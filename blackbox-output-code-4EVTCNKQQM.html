@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Viktoria Nobre - Portfólio de Arquitetura</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@600;700&display=swap');
+
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+    color: #111;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover, a:focus {
+    color: #555;
+    outline: none;
+  }
+
+  /* Header */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #000;
+    color: white;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    z-index: 1000;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.3rem 0;
+    color: white;
+  }
+  nav a:hover, nav a:focus {
+    color: #bbb;
+  }
+  nav a:focus {
+    outline: 2px solid #bbb;
+    outline-offset: 2px;
+  }
+
+  /* Main */
+  main {
+    max-width: 1100px;
+    margin: 6rem auto 4rem;
+    padding: 0 1.5rem;
+  }
+  section {
+    margin-bottom: 5rem;
+  }
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.6rem;
+    color: #000;
+    border-bottom: 3px solid #000;
+    padding-bottom: 0.3rem;
+    margin-bottom: 2rem;
+  }
+  p {
+    max-width: 900px;
+    font-size: 1.15rem;
+    color: #222;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Projects */
+  .project {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .project.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .project:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+  .project img {
+    max-width: 480px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    filter: grayscale(100%);
+  }
+  .project img:hover {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+  }
+  .project-content {
+    flex: 1;
+    min-width: 280px;
+  }
+  .project-content h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 1rem;
+  }
+  .project-content ul {
+    margin-left: 1.5rem;
+    color: #222;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .project-content ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Contact */
+  #contato {
+    max-width: 600px;
+  }
+  #contato p {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+  #contato a {
+    font-weight: 600;
+    color: #000;
+  }
+  #contato a:hover, #contato a:focus {
+    color: #555;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+  }
+  label {
+    font-weight: 600;
+    color: #000;
+  }
+  input, textarea {
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    background: #fff;
+    color: #000;
+  }
+  input:focus, textarea:focus {
+    border-color: #000;
+    outline: none;
+  }
+  button {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover, button:focus {
+    background-color: #444;
+    outline: none;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-top: 4rem;
+    border-radius: 0 0 8px 8px;
+  }
+
+  /* Back to top */
+  #backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 10000;
+  }
+  #backToTop.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  #backToTop:hover, #backToTop:focus {
+    background-color: #444;
+    outline: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .project {
+      flex-direction: column !important;
+    }
+    .project img {
+      max-width: 100%;
+    }
+    header {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    nav {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Viktoria Nobre</h1>
+  <nav aria-label="Menu principal">
+    <a href="#sobre">Sobre</a>
+    <a href="#casa-suspensa">Casa Suspensa</a>
+    <a href="#living-casa-suspensa">Living Casa Suspensa</a>
+    <a href="#sala-integrada">Sala Integrada</a>
+    <a href="#conjunto-habitacional">Conjunto Habitacional</a>
+    <a href="#residencia-unifamiliar">Residência Unifamiliar</a>
+    <a href="#chacara-nsc">Chácara NSC</a>
+    <a href="#sitio-cantos-de-oia">Sítio Cantos de Oiá</a>
+    <a href="#area-gourmet-pesqueiro">Área Gourmet</a>
+    <a href="#projeto-banheiro">Banheiro</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<main>
+  <section id="sobre" tabindex="-1">
+    <h2>Sobre o Portfólio</h2>
+    <p>Este site tem como intuito expor meu trabalho, funcionando dessa forma como meu portfólio profissional, tem a intenção de buscar da melhor forma adequação dos espaço às condições satisfatórias de habitação e permanência. Foi pensado para projetar ambientes e edificações pensando no bem-estar de seus usuários. Me inspiro na criação de projetos que possam se adequar a realidade de cada indivíduo. Entre em contato para maiores informações.</p>
+  </section>
+
+  <section class="project" id="casa-suspensa" tabindex="0" aria-label="Projeto Casa Suspensa">
+    <img src="https://static.wixstatic.com/media/1a2b3c_1234567890abcdef1234567890abcdef~mv2.jpg" alt="Casa Suspensa" />
+    <div class="project-content">
+      <h3>Casa Suspensa</h3>
+      <p>O projeto da Casa Suspensa foi pensado para ser um ambiente contemporâneo, que trouxesse leveza, através da longilineidade do todo. O intuito foi trazer um ambiente que pudesse integrar conforto e natureza em sua área privativa como no segundo pavimento.</p>
+    </div>
+  </section>
+
+  <!-- Continue com as outras seções de projeto conforme necessário -->
+
+  <section id="contato" tabindex="-1">
+    <h2>Contato</h2>
+    <p>Email: <a href="mailto:nobreviktoria@gmail.com">nobreviktoria@gmail.com</a></p>
+    <p>Telefone: <a href="tel:+351910206968">+351 910 206 968</a></p>
+
+    <form id="contactForm" novalidate>
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" required placeholder="Seu nome" />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="seu@email.com" />
+
+      <label for="message">Mensagem</label>
+      <textarea id="message" name="message" rows="5" required placeholder="Escreva sua mensagem"></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Viktoria Nobre - Todos os direitos reservados</p>
+</footer>
+
+<button id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+
+<script>
+  // Scroll suave para links do menu
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        target.focus({preventScroll:true});
+      }
+    });
+  });
+
+  // Animação fade-in dos projetos ao aparecer na tela
+  const projects = document.querySelectorAll('.project');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  projects.forEach(project => observer.observe(project));
+
+  // Botão voltar ao topo
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 300) {
+      backToTop.classList.add('show');
+    } else {
+      backToTop.classList.remove('show');
+    }
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Validação simples do formulário
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if(!form.checkValidity()) {
+      alert('Por favor, preencha todos os campos corretamente.');
+      return;
+    }
+    alert('Mensagem enviada com sucesso! (Simulação)');
+    form.reset();
+  });
+</script>
+</body>
+</html>
